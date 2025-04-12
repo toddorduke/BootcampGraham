@@ -4,29 +4,29 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-//        System.out.println("what is your favorite number");
-//
+        System.out.println("what is your favorite number");
+
         Scanner scanner = new Scanner(System.in);
-//
-//        int userFirst = scanner.nextInt();
-//        System.out.println("what is your second favorite number");
-//        int  userSecond = scanner.nextInt();
-//        scanner.nextLine();
-//        System.out.println("what operation would you like to perform?");
-//String sign = scanner.nextLine();
-//        switch (sign.toLowerCase()){
-//            case("A"):
-//                System.out.println(userFirst+userSecond);
-//                break;
-//            case("B"):
-//                System.out.println(userFirst-userSecond);
-//                break;
-//            case("c"):
-//                System.out.println(userFirst*userSecond);
-//                break;
-//            case"d":
-//                System.out.println(userFirst/userSecond);
-//                break;
+
+        int userFirst = scanner.nextInt();
+        System.out.println("what is your second favorite number");
+        int  userSecond = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("what operation would you like to perform?");
+String sign = scanner.nextLine();
+        switch (sign.toLowerCase()){
+            case("A"):
+                System.out.println(userFirst+userSecond);
+                break;
+            case("B"):
+                System.out.println(userFirst-userSecond);
+                break;
+            case("c"):
+                System.out.println(userFirst*userSecond);
+                break;
+            case"d":
+                System.out.println(userFirst/userSecond);
+                break;
 
 //        int sub = userFirstsub - userSecondSub;
 //
