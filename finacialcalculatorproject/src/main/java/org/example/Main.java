@@ -1,52 +1,54 @@
 package org.example;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //Accept the principal (P), interest rate (r), and loan length (n) from the user as input.
-        //step 1 strng 'what is the principle amount
-        //Calculate the monthly interest rate (r) by dividing the annual interest rate by 12 and then dividing by 100 to convert it to a decimal.
-        //step 2 float what is the interest rate
-        //step 3 string 'what is the length of yor payment'
-        //
-
-
-
-       // m = p[r(1+r)^n] / [(1+r)^n-1]
-
-
-        //
-        //Calculate the number of monthly payments (n) by multiplying the loan length in years by 12.
-        //
-        //Use this formula to calculate the monthly payment (M).
-
-       //M = P[r(1+r)^n] / [(1+r)^n-1]
-// M is the monthly payment.
-//    P is the principal amount (loan amount). float or double
-//    r is the monthly interest rate (annual interest rate divided by 12 and then divided by 100 to convert to a decimal).
-        //float
-//    n is the number of monthly payments (loan length in years multiplied by 12). int
-//Use this formula to calculate the total interest paid:
-//
-//Total Interest = (M * n) - P
-
-//        String p = "Principle";
-//        String r ="Interest Rate";
-//        String n = "Loan Length";
-//        String m = "Monthly Payment's";
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("what is the principle amount");
-        float principle = scanner.nextFloat();
 
-        System.out.println("what is your interest rate");
-        float interstRate = scanner.nextFloat();
+        float p;
+        while (true) {
+            System.out.println("what is the principle amount");
+            if (scanner.hasNextFloat()) {
+                p = scanner.nextFloat();
+                break;
+            }
+        }
+        float r;
+        while (true) {
+            System.out.println("what is your annual interest rate?");
+            if (scanner.hasNextFloat()) {
+                r = scanner.nextFloat();
+                break;
+            }
+        }
+        int years;
+        while (true) {
+            System.out.println("Enter the loan term in years");
+            if (scanner.hasNextInt()) {
+                years = scanner.nextInt();
+                break;
+            }
+        }
+        int n = years * 12;
+        float i = ((r / 12) / 100);
 
-        System.out.println("what is the loan length");
-        int loanLength = scanner.nextInt();
+        System.out.println("Your monthly Intrest is $" + i);
 
-        // System.out.println("your monthly interest rate is " + (interstRate / 12)/100);
+        double numerator = i * Math.pow(1 + i, n);
+        double denominator = Math.pow(1 + i, n)-1;
+        double monthlyPayment = p * (numerator / denominator);
 
+        double totalPayment = monthlyPayment * n;
+        double totalInterest = totalPayment - p ;
+        System.out.printf("Your monthly payment is: $%.2f\n", monthlyPayment);
+        System.out.printf("Your total interest over the loan is: $%.2f\n", totalInterest);
+
+        scanner.close();
     }
 }
+//Example: A $53,000 loan at 7.625% interest for 15 years would
+//have a $495.09/mo payment with a total interest of $36,115.99
