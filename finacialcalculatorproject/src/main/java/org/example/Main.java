@@ -31,6 +31,7 @@ public class Main {
             if (scanner.hasNextInt()) {
                 years = scanner.nextInt();
                 break;
+
             }
         }
         int n = years * 12;

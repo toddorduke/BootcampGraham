@@ -7,10 +7,10 @@ public class Main {
 //        Accept the initial deposit (P), annual interest rate (r), and number of years (t) from the user as input.
         Scanner scanner = new Scanner(System.in);
 
-        float userInputP;
+        double userInputP;
             while (true) {
                 System.out.println("Input deposit amount");
-               if (scanner.hasNextFloat()) {
+               if (scanner.hasNextDouble()) {
                    userInputP = scanner.nextFloat();
                    break;
                }
@@ -23,11 +23,11 @@ public class Main {
                 break;
             }
         }
-        float userInputT;
+        double userInputT;
             while (true) {
                 System.out.println("Input the number of years");
-                if (scanner.hasNextFloat());
-                userInputT = scanner.nextFloat();
+                if (scanner.hasNextDouble());
+                userInputT = scanner.nextDouble();
                 break;
             }
             //FV = P × (1 + (r / 365))^(365 × t)
@@ -38,7 +38,6 @@ public class Main {
         //        double futureValue = principal * Math.pow((1 + (annualRate / 365)), (365 * years));
         double futureValue =userInputP * Math.pow((1+(userInputr/365)), (365 * userInputT));
             double totalInterestEarned = futureValue - userInputP;
-
         System.out.printf("Your future %1f", futureValue);
         System.out.printf("Your total interest earned %2f",totalInterestEarned);
         //Example: If you deposit $1,000 in a CD that earns 1.75%
