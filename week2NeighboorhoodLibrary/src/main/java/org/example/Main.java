@@ -122,7 +122,15 @@ public class Main {
 
                     }
                 case "C":
-                    booksearch(inventory, scanner);
+                    System.out.println("Search by availability");
+                    scanner.nextLine();
+                    String bookAvailability = scanner.nextLine();
+                    for (int i = 0; i < inventory.length; i++) {
+                        Book book = inventory[i];
+                        if (bookAvailability.equalsIgnoreCase("Available") && !book.isCheckedOut()) {
+                            System.out.println("Book Title:" + "Available");
+                        }
+                    }
                     break;
                 // Assuming this is inside your main loop and the case for adding a book is selected (e.g., case "D")
                 case "D":
@@ -169,15 +177,7 @@ public class Main {
     }
 
     public static void bookAvailability(Book[] inventory, Scanner scanner) {
-        System.out.println("Search by availability");
-        scanner.nextLine();
-        String bookAvailability = scanner.nextLine();
-        for (int i = 0; i < inventory.length; i++) {
-            Book book = inventory[i];
-            if (bookAvailability.equalsIgnoreCase("Available") && !book.isCheckedOut()) {
-                System.out.println("Book Title:" + "Available");
-            }
-        }
+
     }
 
     public static void booksearch(Book[] inventory, Scanner scanner) {
