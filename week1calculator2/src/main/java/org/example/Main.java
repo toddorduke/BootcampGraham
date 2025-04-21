@@ -30,16 +30,17 @@ public class Main {
                 userInputT = scanner.nextDouble();
                 break;
             }
-            //FV = P × (1 + (r / 365))^(365 × t)
+
+        double futureValue =userInputP * Math.pow((1+(userInputr/365)), (365 * userInputT));
+            double totalInterestEarned = futureValue - userInputP;
+        System.out.printf("Your future %1f", futureValue);
+        System.out.printf("Your total interest earned %2f",totalInterestEarned);
+        //FV = P × (1 + (r / 365))^(365 × t)
         //Future Value (FV)
         // Days Per Year: Daily compounding assumes 365 days per year.
         //Total Number of Days: This is 365 × t (because there are 365 days per year).
         //• Total Interest Earned = FV - P
         //        double futureValue = principal * Math.pow((1 + (annualRate / 365)), (365 * years));
-        double futureValue =userInputP * Math.pow((1+(userInputr/365)), (365 * userInputT));
-            double totalInterestEarned = futureValue - userInputP;
-        System.out.printf("Your future %1f", futureValue);
-        System.out.printf("Your total interest earned %2f",totalInterestEarned);
         //Example: If you deposit $1,000 in a CD that earns 1.75%
         //interest and matures in 5 years, your CD's ending balance will
         //be $1,092.62 and you would have earned $92.62 in interest

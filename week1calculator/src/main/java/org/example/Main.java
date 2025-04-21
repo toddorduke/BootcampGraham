@@ -37,35 +37,35 @@ String sign = scanner.nextLine();
 //        int userSecondSub = scanner.nextInt();
 //        System.out.println("now lets subtract the numbers = " + Math.subtractExact(userFirstsub, userSecondSub));
 
-//       // int multiply = userMul * userMul2;
+       // int multiply = userMul * userMul2;
 
-//        System.out.println("give me a number between 1-100");
-//        Scanner scanner2 =  new Scanner(System.in);
-//        int  userMul = scanner.nextInt();
-//        System.out.println("now lets do one between 1 - 50");
-//        int  userMul2 = scanner.nextInt();
-//        System.out.println("lets multipy the number = " + (userMul * userMul2));
-////
-//       // int divide = userDiv userDiv2;
-
-//        System.out.println("what is your least favorite number");;
-//        Scanner scanner3 = new Scanner(System.in);
-//        float userDiv = scanner.nextFloat();
-//        System.out.println("give me another number");
-//        float userDiv2 = scanner.nextFloat();
-//        System.out.println("lets divid your number = " + userDiv / userDiv2);
+        System.out.println("give me a number between 1-100");
+        Scanner scanner2 =  new Scanner(System.in);
+        int  userMul = scanner.nextInt();
+        System.out.println("now lets do one between 1 - 50");
+        int  userMul2 = scanner.nextInt();
+        System.out.println("lets multipy the number = " + (userMul * userMul2));
 //
-//     String Sign = "Add";
-//    switch (sign){
-//        case("Add"):
-//            System.out.println("you have chose to do addititon your answer is"+ userFirst+userSecond);
-//            break;
-//        case("B"):
-//            break;
-//        case("C"):
-//            break;
-//        case"D":
-//            break;
+       // int divide = userDiv userDiv2;
+
+        System.out.println("what is your least favorite number");;
+        Scanner scanner3 = new Scanner(System.in);
+        float userDiv = scanner.nextFloat();
+        System.out.println("give me another number");
+        float userDiv2 = scanner.nextFloat();
+        System.out.println("lets divid your number = " + userDiv / userDiv2);
+
+     String Sign = "Add";
+    switch (sign){
+        case("Add"):
+            System.out.println("you have chose to do addititon your answer is"+ userFirst+userSecond);
+            break;
+        case("B"):
+            break;
+        case("C"):
+            break;
+        case"D":
+            break;
 
         }
     }
