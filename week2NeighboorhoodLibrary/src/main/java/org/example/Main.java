@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 public class Main {
@@ -169,7 +170,7 @@ public class Main {
 
 
                 case "E":
-                    System.exit(0);
+                    IDSearch(inventory,scanner);
             }
 
         }
@@ -187,12 +188,31 @@ public class Main {
             Book book = inventory[i];
             if (book.getTitle().equals(bookname.contains(book.getTitle()))) {
                 System.out.println("This book is available:");
-            }else if (bookname.equalsIgnoreCase(book.getTitle()) == book.getTitle().contains(bookname));
+            } else if (bookname.equalsIgnoreCase(book.getTitle()) == book.getTitle().contains(bookname)) ;
             System.out.println("Sorry book not in archive.");
+
         }
     }
 
-}
+    public static void IDSearch(Book[] inventory, Scanner scanner) {
+        boolean found = false;
+        System.out.println("Please type the book ID in.");
+        int bookID = scanner.nextInt();
+        for (int i = 0; i < inventory.length; i++) {
+            Book book = inventory[i];
+            if (bookID == book.getId()) {
+                System.out.println("is this the book:" + inventory[bookID]);
+                if (!book.isCheckedOut) {
+                    System.out.println("Let's go! The book is available.");
+                } else {
+                    System.out.println("Sorry, that book is currently checked out.");
+                }
+                found = true;
+                break; // We found the book, so stop looking
+            }
+        }
+
+    }}
 
 
 
