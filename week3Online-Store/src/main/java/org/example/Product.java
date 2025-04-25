@@ -9,24 +9,24 @@ import java.util.List;
 
 public class Product {
 
-private String SKU ;
-private String productName;
-private double price;
-private String department;
+    private String sku;
+    private String productName;
+    private double price;
+    private String department;
 
-    public Product(String SKU, String productName, double price, String department) {
-        this.SKU = SKU;
+    public Product(String sku, String productName, double price, String department) {
+        this.sku = sku;
         this.productName = productName;
         this.price = price;
         this.department = department;
     }
 
-    public String getSKU() {
-        return SKU;
+    public String getsku() {
+        return sku;
     }
 
-    public void setSKU(String SKU) {
-        this.SKU = SKU;
+    public void setSKU(String sku) {
+        this.sku = sku;
     }
 
     public String getProductName() {
