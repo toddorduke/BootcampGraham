@@ -13,7 +13,7 @@ public class ShoppingCart {
 
     //TODO add product to cart method
     public void addProductToCart(Product product) {
-            this.products.add(product);
+        this.products.add(product);
 
     }
 
@@ -35,11 +35,11 @@ public class ShoppingCart {
 
     //TODO get cart total method
     public double getCartTotal() {
-            Double total = 0.0;
-            for (Product product : this.products) {
-                total += product.getPrice();
-            }
-            return total;
+        Double total = 0.0;
+        for (Product product : this.products) {
+            total += product.getPrice();
+        }
+        return total;
 
     }
 

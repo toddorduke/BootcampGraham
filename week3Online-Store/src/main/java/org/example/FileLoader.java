@@ -36,6 +36,6 @@ public class FileLoader {
             System.out.println("failed to load csv file.");
             return new ArrayList<>();
         }
-
     }
+
 }
