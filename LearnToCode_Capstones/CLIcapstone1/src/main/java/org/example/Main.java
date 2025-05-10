@@ -37,7 +37,6 @@ public class Main {
                     break;
                 }
             }
-
         }
     }
 
@@ -84,23 +83,7 @@ public class Main {
 
     }
 
-    public List<Transaction> vendorSearch(List<Transaction> transactions) {
-        Scanner scanner = new Scanner(System.in);
-        for (Transaction transaction : transactions) {
-            System.out.println("Please enter the vendor name.");
-            String vendor = scanner.nextLine();
-            if (transaction.getVendor().toLowerCase().contains(vendor.toLowerCase())) {
-                String row = transaction.toString();
-                System.out.println(row);
-            } else {
-                System.out.println("Sorry vendor not found");
-            }
-        }
-        return transactions;
-
-    }
-
-    public static List<Transaction> reportList() {
+    public static List<Transaction> reportList()            {
         TransactionFIleManager fIleManager = new TransactionFIleManager();
         Ledger ledger = new Ledger();
         Scanner scanner = new Scanner(System.in);
@@ -131,7 +114,7 @@ public class Main {
                     break;
                 }
                 case "D": {
-boolean found = false;
+
                     while (true) {
                         System.out.println("These are your report options");
                         System.out.println("A: last seven days\n" +
@@ -147,9 +130,11 @@ boolean found = false;
                             }
                             case "B": {
                                 ledger.getMonthToDate();
+                                break;
                             }
                             case "C": {
                                 ledger.getYearToDate();
+                                break;
                             }
                             case "D": {
                                 System.out.println("Please provide the vendors name");
@@ -158,7 +143,7 @@ boolean found = false;
                                 break;
                             }
                             case "E": {
-                             found =false;
+                             return null;
                             }
 
                         }

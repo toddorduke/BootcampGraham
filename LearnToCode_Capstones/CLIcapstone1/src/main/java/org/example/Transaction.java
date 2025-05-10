@@ -3,7 +3,6 @@ package org.example;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-//Todo change to singular
 public class Transaction {
 
     private LocalDate date;
@@ -12,10 +11,6 @@ public class Transaction {
     private String vendor;
     private double amount;
 
-    //public class Appointment {
-//        private LocalDate appointmentDate;
-//        private LocalDateTime appointmentDateTime;
-//    }
     public Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
         this.date = date;
         this.time = time;

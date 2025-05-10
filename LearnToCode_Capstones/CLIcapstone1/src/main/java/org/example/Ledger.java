@@ -23,7 +23,8 @@ public class Ledger {
                 String row = transaction.toString();
                 System.out.println(row);
             }
-        }if (!foundVendor){
+        }
+        if (!foundVendor) {
             System.out.println("vendor not found");
         }
         return transactions;
@@ -35,12 +36,10 @@ public class Ledger {
             if (transaction.getAmount() < 0) {
                 String row = transaction.toString();
 
-                //todo add remove payment.
                 System.out.println(row);
             }
         }
     }
-
 
     public void showDeposit(List<Transaction> transactions) {
         for (Transaction transaction : transactions) {
@@ -50,7 +49,6 @@ public class Ledger {
             }
         }
     }
-
 
     public List<Transaction> showAllEntries(List<Transaction> transactions) {
         for (Transaction transaction : transactions) {
@@ -95,12 +93,13 @@ public class Ledger {
             System.out.println(row);
         }
     }
-    public void userVendorSearch(String vendor, String name){
+
+    public void userVendorSearch(String vendor, String name) {
         List<Transaction> transactions = TransactionFIleManager.readFile();
-        for (Transaction transaction : transactions){
-            if (transaction.getVendor().toLowerCase().contains(vendor.toLowerCase())){
+        for (Transaction transaction : transactions) {
+            if (transaction.getVendor().toLowerCase().contains(vendor.toLowerCase())) {
                 if (transaction.getVendor().toLowerCase().contains(name.toLowerCase()))
-                vendorSearch(name);
+                    vendorSearch(name);
                 transactions.toString();
                 System.out.println(vendor);
             }
