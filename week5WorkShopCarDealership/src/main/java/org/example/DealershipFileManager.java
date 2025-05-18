@@ -14,15 +14,12 @@ public class DealershipFileManager {
 
     public static DealerShip getDealership() {
         DealerShip dealerShip = new DealerShip("","","");
-        Vehicle vehicle = new Vehicle();
+
         String inputFilePath = "src/main/resources/inventory.csv"; // CSV file to read
-        String outputFilePath = "src/main/resources/inventory.txt"; // Text file to write to
 
 
         try (
                 BufferedReader reader = new BufferedReader(new FileReader(inputFilePath))) {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath));
-
             boolean firstLine = true;
             String line;
             while ((line = reader.readLine()) != null) {
@@ -35,33 +32,42 @@ public class DealershipFileManager {
                     dealerShip.setName(dealership[0]);
                     dealerShip.setAddress(dealership[1]);
                     dealerShip.setPhone(dealership[2]);
-                    System.out.println(dealerShip.getAddress());
+                 //   System.out.println(dealerShip.getAddress());
+
                     firstLine = false;
+
                 }
+
                 else{
                     //for inventory
                     //Todo fix asign properties
                     List<Vehicle> vehicles = new ArrayList<>();
                     String[] inventory = line.split("\\|");
-                  //10112|1993|Ford|Explorer|SUV|Red|525123|995.00
-                    System.out.println(Arrays.toString(inventory));
+           //         System.out.println(Arrays.toString(inventory));
                     //asging values to the class properties
-                    vehicle.setVin(vehicles[0]);
-                    vehicle.setYear(Integer.parseInt(inventory[1]));
-                    vehicle.setMake(inventory[2]);
-                    vehicle.setModel(inventory[3]);
-                    vehicle.setVehicleType(VehicleType.valueOf(inventory[4].toUpperCase()));
-                    vehicle.setColor(inventory[5]);
-                    vehicle.setOdometer(Double.parseDouble(inventory[6]));
-                    vehicle.setPrice(Double.parseDouble(inventory[7]));
 
-                    vehicles.add(vehicle);
-                    dealerShip.addVehicle(vehicle);
+                    try {
+                        Vehicle vehicle = new Vehicle();
+                        vehicle.setVin(Integer.parseInt(inventory[0]));
+                        vehicle.setYear(Integer.parseInt(inventory[1]));
+                        vehicle.setMake(inventory[2]);
+                        vehicle.setModel(inventory[3]);
+                        vehicle.setVehicleType(VehicleType.valueOf(inventory[4].toUpperCase()));
+                        vehicle.setColor(inventory[5]);
+                        vehicle.setOdometer(Double.parseDouble(inventory[6]));
+                        vehicle.setPrice(Double.parseDouble(inventory[7]));
+                        vehicles.add(vehicle);
+                        dealerShip.addVehicle(vehicle);
 
-                    System.out.println(vehicle);
+                 //       System.out.println(vehicle);
+                    }
+                    catch(Exception e){
+                        System.out.println("error reading line");
+                        continue;
+
+                    }
                 }
             }
-            System.out.println();
         } catch (IOException ex) {
             System.out.println("An error occurred: " + ex.getMessage());
         }

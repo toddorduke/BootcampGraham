@@ -88,7 +88,7 @@ public Vehicle(){
         this.price = price;
     }
     public String toString() {
-        return String.format("%d|%d|%s|%s|%s%n|%s|%f|%f",
+        return String.format("%d|%d|%s|%s|%s|%s|%f|%f",
                 vin,
                 year,
                 make,

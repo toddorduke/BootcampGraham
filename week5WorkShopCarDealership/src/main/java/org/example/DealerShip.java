@@ -3,7 +3,7 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class DealerShip {
 
@@ -20,7 +20,7 @@ public class DealerShip {
         this.address = address;
     }
 
-    public  List<Vehicle> getVehiclesByPrice(double min, double max) {
+    public List<Vehicle> getVehiclesByPrice(double min, double max) {
         List<Vehicle> foundvehicles = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {

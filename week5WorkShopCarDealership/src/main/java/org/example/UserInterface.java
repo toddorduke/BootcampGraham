@@ -7,23 +7,15 @@ public class UserInterface {
     DealerShip dealership;
 
     public UserInterface() {
-    init();
-    }
-
-    public static void main(String[] args) {
-
-        System.out.println();
+        init();
     }
 
     //todo init
     private void init() {
-        DealershipFileManager dealershipFileManager = new DealershipFileManager();
         this.dealership = DealershipFileManager.getDealership();
     }
 
-    public String display() {
-
-
+    public boolean display() {
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -35,42 +27,73 @@ public class UserInterface {
                     "5. Search by mileage\n" +
                     "6. Search by vehicle type.\n" +
                     "7. Search by vehicle\n" +
-                    "8. End Session\n");
+                    "8. End Session\n" +
+                    "9. Add vehicle\n" +
+                    "10.) remove vehicle\n");
 
             String userInput = scanner.nextLine();
             switch (userInput) {
 
-                case "1": {System.out.println("What is your min?");
+                case "1": {
+                    System.out.println("What is your min?");
                     double min = Double.parseDouble(scanner.nextLine());
                     System.out.println("What is your max");
                     double max = Double.parseDouble(scanner.nextLine());
-                    processGetByPriceRequest(min,max);
+                    processGetByPriceRequest(min, max);
+                    break;
                 }
-                break;
 
                 case "2": {
-
-                    processGetByMakeModelRequest();
+                    System.out.println("What is your min?");
+                    String min = scanner.nextLine();
+                    System.out.println("What is your max");
+                    String max = scanner.nextLine();
+                    processGetByMakeModelRequest(min, max);
                     break;
                 }
                 case "3": {
-                    processGetByYearRequest();
+                    System.out.println("What is the min year?");
+                    double min = Double.parseDouble(scanner.nextLine());
+                    System.out.println("What is the max year");
+                    double max = Double.parseDouble(scanner.nextLine());
+
+                    processGetByYearRequest(min, max);
                     break;
                 }
                 case "4": {
-                    processGetByColorRequest();
+                    System.out.println("What color vehicle?");
+                    String color = scanner.nextLine();
+                    processGetByColorRequest(color);
                     break;
                 }
                 case "5": {
-                    processGetByMileageRequest();
+                    System.out.println("What is your min?");
+                    double min = Double.parseDouble(scanner.nextLine());
+                    System.out.println("What is your max");
+                    double max = Double.parseDouble(scanner.nextLine());
+
+                    processGetByMileageRequest(min, max);
                     break;
                 }
                 case "6": {
-                    processGetByVehicleTypeRequest();
+                    System.out.println("What is ht vehicle type>");
+                    String name = scanner.nextLine();
+                    VehicleType vehicleType = VehicleType.valueOf(name);
+                    processGetByVehicleTypeRequest(vehicleType);
                     break;
                 }
                 case "7": {
                     processGetAllVehiclesRequest();
+                    break;
+                }
+                case "9": {
+                    processAddVehicleRequest(new Vehicle());
+                    break;
+                }
+                case "10": {
+                    System.out.println("What is the vin number");
+                    int vin = Integer.parseInt(scanner.nextLine());
+                    processRemoveVehicleRequest(vin);
                     break;
                 }
                 case "8": {
@@ -81,46 +104,65 @@ public class UserInterface {
     }
 
     public void processGetByPriceRequest(double min, double max) {
-        dealership.getVehiclesByPrice(min,max);
+        List<Vehicle> vehicles = dealership.getVehiclesByPrice(min, max);
+        displayVehciles(vehicles);
     }
 
-    public static void processGetByMakeModelRequest() {
-
+    public void processGetByMakeModelRequest(String make, String model) {
+        List<Vehicle> vehicles = dealership.getVehiclesByMakeModel(make, model);
+        displayVehciles(vehicles);
     }
 
-    public static void processGetByYearRequest() {
-
-
+    public void processGetByYearRequest(double min, double max) {
+        List<Vehicle> vehicles = dealership.getVehiclesByYear(min, max);
+        displayVehciles(vehicles);
     }
 
-    public static void processGetByColorRequest() {
-
+    public void processGetByColorRequest(String color) {
+        List<Vehicle> vehicles = dealership.getVehicleByColor(color);
+        displayVehciles(vehicles);
     }
 
-    public static void processGetByMileageRequest() {
-
-
+    public void processGetByMileageRequest(double min, double max) {
+        List<Vehicle> vehciles = dealership.getVehicleByMileage(min, max);
+        displayVehciles(vehciles);
     }
 
-    public static void processGetByVehicleTypeRequest() {
-
-
+    public void processGetByVehicleTypeRequest(VehicleType vehicleType) {
+        List<Vehicle> vehicles = dealership.getVehicleByType(vehicleType);
+        displayVehciles(vehicles);
     }
 
     public void processGetAllVehiclesRequest() {
         List<Vehicle> vehicles = dealership.getAllVehicles();
+        displayVehciles(vehicles);
+    }
+
+    public void processAddVehicleRequest(Vehicle vehicle) {
+
+        dealership.addVehicle(vehicle);
+    }
+
+    public void processRemoveVehicleRequest(int vin) {
+        List<Vehicle> vehicles = dealership.getAllVehicles();
+
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.getVin() == vin) {
+                dealership.removeVehicle(vehicle);
+                System.out.println("Vehicle with VIN " + vin + " has been removed.");
+                return;
+            }
+        }
+
+        System.out.println("Vehicle with VIN " + vin + " not found.");
+    }
+
+    public static void displayVehciles(List<Vehicle> vehicles) {
         for (Vehicle vehicle : vehicles) {
             System.out.println(vehicle.toString());
         }
     }
-
-    public static void processAddVehicleRequest() {
-
-
-    }
-
-    public static void processRemoveVehicleRequest() {
-
-
-    }
 }
+
+
+
