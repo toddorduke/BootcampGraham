@@ -108,6 +108,16 @@ public class DealerShip {
 
     }
 
+    public Vehicle searchByVin(int vin) {
+        List<Vehicle> vehicles = this.inventory;
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.getVin() == vin) {
+                return vehicle;
+            }
+        }
+        return null;
+    }
+
     public String getName() {
         return name;
     }

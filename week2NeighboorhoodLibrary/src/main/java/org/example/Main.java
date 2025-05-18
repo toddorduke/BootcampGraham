@@ -115,12 +115,10 @@ public class Main {
                                 } else {
                                     System.out.println("This book is already checked in.");
                                 }
-
                                 break;
                             }
                         }
                         break;
-
                     }
                 case "C":
                     System.out.println("Search by availability");
@@ -190,7 +188,6 @@ public class Main {
                 System.out.println("This book is available:");
             } else if (bookname.equalsIgnoreCase(book.getTitle()) == book.getTitle().contains(bookname)) ;
             System.out.println("Sorry book not in archive.");
-
         }
     }
 

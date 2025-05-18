@@ -10,7 +10,11 @@ public class UserInterface {
         init();
     }
 
-    //todo init
+//    public void addcontract(Contract contract) {
+//this.contract.add(contract);
+//    }
+
+
     private void init() {
         this.dealership = DealershipFileManager.getDealership();
     }
@@ -29,77 +33,119 @@ public class UserInterface {
                     "7. Search by vehicle\n" +
                     "8. End Session\n" +
                     "9. Add vehicle\n" +
-                    "10.) remove vehicle\n");
+                    "10.) remove vehicle\n" +
+                    "11.) Purchase a vehicle\n" +
+                    "12.) Lease vehicle");
 
-            String userInput = scanner.nextLine();
-            switch (userInput) {
 
-                case "1": {
-                    System.out.println("What is your min?");
-                    double min = Double.parseDouble(scanner.nextLine());
-                    System.out.println("What is your max");
-                    double max = Double.parseDouble(scanner.nextLine());
-                    processGetByPriceRequest(min, max);
-                    break;
-                }
+            try {
+                String userInput = scanner.nextLine();
+                switch (userInput) {
 
-                case "2": {
-                    System.out.println("What is your min?");
-                    String min = scanner.nextLine();
-                    System.out.println("What is your max");
-                    String max = scanner.nextLine();
-                    processGetByMakeModelRequest(min, max);
-                    break;
-                }
-                case "3": {
-                    System.out.println("What is the min year?");
-                    double min = Double.parseDouble(scanner.nextLine());
-                    System.out.println("What is the max year");
-                    double max = Double.parseDouble(scanner.nextLine());
+                    case "1": {
+                        System.out.println("What is your min?");
+                        double min = Double.parseDouble(scanner.nextLine());
+                        System.out.println("What is your max");
+                        double max = Double.parseDouble(scanner.nextLine());
+                        processGetByPriceRequest(min, max);
+                        break;
+                    }
 
-                    processGetByYearRequest(min, max);
-                    break;
-                }
-                case "4": {
-                    System.out.println("What color vehicle?");
-                    String color = scanner.nextLine();
-                    processGetByColorRequest(color);
-                    break;
-                }
-                case "5": {
-                    System.out.println("What is your min?");
-                    double min = Double.parseDouble(scanner.nextLine());
-                    System.out.println("What is your max");
-                    double max = Double.parseDouble(scanner.nextLine());
+                    case "2": {
+                        System.out.println("What is your min?");
+                        String min = scanner.nextLine();
+                        System.out.println("What is your max");
+                        String max = scanner.nextLine();
+                        processGetByMakeModelRequest(min, max);
+                        break;
+                    }
+                    case "3": {
+                        System.out.println("What is the min year?");
+                        double min = Double.parseDouble(scanner.nextLine());
+                        System.out.println("What is the max year");
+                        double max = Double.parseDouble(scanner.nextLine());
 
-                    processGetByMileageRequest(min, max);
-                    break;
+                        processGetByYearRequest(min, max);
+                        break;
+                    }
+                    case "4": {
+                        System.out.println("What color vehicle?");
+                        String color = scanner.nextLine();
+                        processGetByColorRequest(color);
+                        break;
+                    }
+                    case "5": {
+                        System.out.println("What is your min?");
+                        double min = Double.parseDouble(scanner.nextLine());
+                        System.out.println("What is your max");
+                        double max = Double.parseDouble(scanner.nextLine());
+
+                        processGetByMileageRequest(min, max);
+                        break;
+                    }
+                    case "6": {
+                        System.out.println("What is ht vehicle type>");
+                        String name = scanner.nextLine();
+                        VehicleType vehicleType = VehicleType.valueOf(name);
+                        processGetByVehicleTypeRequest(vehicleType);
+                        break;
+                    }
+                    case "7": {
+                        processGetAllVehiclesRequest();
+                        break;
+                    }
+                    case "8": {
+                        System.exit(0);
+                    }
+                    case "9": {
+                        processAddVehicleRequest(new Vehicle());
+                        break;
+                    }
+                    case "10": {
+                        System.out.println("What is the vin number");
+                        int vin = Integer.parseInt(scanner.nextLine());
+                        processRemoveVehicleRequest(vin);
+                        break;
+                    }
+                    case "11": {
+                        //todo create sale option
+                        System.out.println("What is the vin number?");
+                        int vin = Integer.parseInt(scanner.nextLine());
+                        Vehicle vehicle = processFindByVin(vin);
+
+                        System.out.println("Today's Date");
+                        String date = scanner.nextLine();
+                        System.out.println("What is your name?");
+                        String name = scanner.nextLine();
+                        System.out.println("What is your email?");
+                        String email = scanner.nextLine();
+                        saleCar(name, date, email, vehicle);
+
+                        break;
+                    }
+                    case "12": {
+                        //todo creat leaes option
+                        System.out.println("What is the vin number?");
+                        int vin = Integer.parseInt(scanner.nextLine());
+                        Vehicle vehicle = processFindByVin(vin);
+
+                        System.out.println("Today's Date");
+                        String date = scanner.nextLine();
+                        System.out.println("What is your name?");
+                        String name = scanner.nextLine();
+                        System.out.println("What is your email?");
+                        String email = scanner.nextLine();
+                        leaseSale(date,name,email,vehicle);
+                        //connecto to Leasecontract
+                    }
+                    default:
+                        System.out.println("invalid respond try again choose numbers between 1-12");
+
                 }
-                case "6": {
-                    System.out.println("What is ht vehicle type>");
-                    String name = scanner.nextLine();
-                    VehicleType vehicleType = VehicleType.valueOf(name);
-                    processGetByVehicleTypeRequest(vehicleType);
-                    break;
-                }
-                case "7": {
-                    processGetAllVehiclesRequest();
-                    break;
-                }
-                case "9": {
-                    processAddVehicleRequest(new Vehicle());
-                    break;
-                }
-                case "10": {
-                    System.out.println("What is the vin number");
-                    int vin = Integer.parseInt(scanner.nextLine());
-                    processRemoveVehicleRequest(vin);
-                    break;
-                }
-                case "8": {
-                    System.exit(0);
-                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please input a number provided.");
             }
+
         }
     }
 
@@ -162,7 +208,35 @@ public class UserInterface {
             System.out.println(vehicle.toString());
         }
     }
+
+    public Vehicle processFindByVin(int vin) {
+        Vehicle foundvehicle = dealership.searchByVin(vin);
+        System.out.println(foundvehicle);
+        return foundvehicle;
+    }
+
+//    public void customerContact(String name, String date, String email, Vehicle vehicle) {
+//        SalesContract customer = new SalesContract(date, name, email);
+//
+//
+//    }
+
+    public void saleCar(String name, String date, String email, Vehicle vehicle) {
+        ContractFileManager contractFileManager = new ContractFileManager();
+        //make sales contract
+        //usefile manager to write tot the file
+        //send message
+        SalesContract salesContract = new SalesContract(date, name, email, vehicle);
+        contractFileManager.appendContractToFile(salesContract);
+        System.out.println("Thank you for your purchase");
+    }
+
+    public void leaseSale(String date, String name, String email, Vehicle vehicle) {
+        ContractFileManager contractFileManager = new ContractFileManager();
+        LeaseContract leaseContract = new LeaseContract(date, name, email, vehicle);
+        contractFileManager.appendContractToFile(leaseContract);
+        System.out.println("Thank you for leasing a vehicle with us");
+    }
+
+
 }
-
-
-

@@ -1,7 +1,6 @@
 package org.example;
 
 import java.io.*;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,10 +28,9 @@ public class DealershipFileManager {
                     //D & B Used Cars|111 Old Benbrook Rd|817-555-5555
                     System.out.println(Arrays.toString(dealership));
                     //asging values to the class properties
-                    dealerShip.setName(dealership[0]);
-                    dealerShip.setAddress(dealership[1]);
-                    dealerShip.setPhone(dealership[2]);
-                 //   System.out.println(dealerShip.getAddress());
+                    dealerShip.setName(dealership[0].trim());
+                    dealerShip.setAddress(dealership[1].trim());
+                    dealerShip.setPhone(dealership[2].trim());
 
                     firstLine = false;
 
@@ -59,7 +57,6 @@ public class DealershipFileManager {
                         vehicles.add(vehicle);
                         dealerShip.addVehicle(vehicle);
 
-                 //       System.out.println(vehicle);
                     }
                     catch(Exception e){
                         System.out.println("error reading line");
@@ -74,8 +71,24 @@ public class DealershipFileManager {
         return dealerShip;
     }
 
-    public List<DealerShip> saveDealership(DealerShip dealerShip) {
+    public void saveDealership(DealerShip dealerShip) {
 
-        return null;
+       //  is not in append mode it will overwrite the whole file
+        try{
+            FileWriter fw = new FileWriter("src/main/resources/inventory.csv");
+
+            fw.write(dealerShip.getName() + "|" + dealerShip.getAddress() + "|" + dealerShip.getPhone());
+            //loop thorug dealreship vehciles
+            for(Vehicle vehicle : dealerShip.getAllVehicles()){
+                fw.write(vehicle.toString());
+
+            }
+            fw.close();
+        }
+        catch(Exception e){
+            System.out.println("information was not saved.");
+        }
+
+
     }
 }
