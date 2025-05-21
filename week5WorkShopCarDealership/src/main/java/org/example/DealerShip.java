@@ -37,7 +37,7 @@ public class DealerShip {
         List<Vehicle> foundvehicles = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
-            if (vehicle.getMake().toLowerCase().contains(make) && vehicle.getModel().toLowerCase().contains(model))
+            if (vehicle.getMake().toUpperCase().contains(make.toLowerCase()) && vehicle.getModel().toUpperCase().contains(model.toLowerCase()))
                 foundvehicles.add(vehicle);
         }
         return foundvehicles;

@@ -52,11 +52,11 @@ public class UserInterface {
                     }
 
                     case "2": {
-                        System.out.println("What is your min?");
-                        String min = scanner.nextLine();
-                        System.out.println("What is your max");
-                        String max = scanner.nextLine();
-                        processGetByMakeModelRequest(min, max);
+                        System.out.println("What is your make");
+                        String make = scanner.nextLine();
+                        System.out.println("What is your model");
+                        String model = scanner.nextLine();
+                        processGetByMakeModelRequest(make, model);
                         break;
                     }
                     case "3": {
@@ -86,7 +86,7 @@ public class UserInterface {
                     case "6": {
                         System.out.println("What is ht vehicle type>");
                         String name = scanner.nextLine();
-                        VehicleType vehicleType = VehicleType.valueOf(name);
+                        VehicleType vehicleType = VehicleType.valueOf(name.toUpperCase());
                         processGetByVehicleTypeRequest(vehicleType);
                         break;
                     }
