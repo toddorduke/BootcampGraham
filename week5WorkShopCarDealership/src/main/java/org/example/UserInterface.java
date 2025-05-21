@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -30,13 +31,12 @@ public class UserInterface {
                     "4. Search by color\n" +
                     "5. Search by mileage\n" +
                     "6. Search by vehicle type.\n" +
-                    "7. Search by vehicle\n" +
+                    "7. Display all vehicle\n" +
                     "8. End Session\n" +
                     "9. Add vehicle\n" +
                     "10.) remove vehicle\n" +
                     "11.) Purchase a vehicle\n" +
                     "12.) Lease vehicle");
-
 
             try {
                 String userInput = scanner.nextLine();
@@ -98,7 +98,33 @@ public class UserInterface {
                         System.exit(0);
                     }
                     case "9": {
-                        processAddVehicleRequest(new Vehicle());
+                        System.out.println("Enter VIN:");
+                        int vin = Integer.parseInt(scanner.nextLine());
+
+                        System.out.println("Enter year:");
+                        int year = Integer.parseInt(scanner.nextLine());
+
+                        System.out.println("Enter make:");
+                        String make = scanner.nextLine();
+
+                        System.out.println("Enter model:");
+                        String model = scanner.nextLine();
+
+                        System.out.println("Enter vehicle type (e.g., SUV, SEDAN, TRUCK):");
+                        VehicleType vehicleType = VehicleType.valueOf(scanner.nextLine().toUpperCase());
+
+                        System.out.println("Enter color:");
+                        String color = scanner.nextLine();
+
+                        System.out.println("Enter odometer reading:");
+                        int odometer = Integer.parseInt(scanner.nextLine());
+
+                        System.out.println("Enter price:");
+                        double price = Double.parseDouble(scanner.nextLine());
+
+                        Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+                        processAddVehicleRequest(vehicle);
+                        System.out.println("Vehicle added successfully.");
                         break;
                     }
                     case "10": {
@@ -135,14 +161,16 @@ public class UserInterface {
                         String name = scanner.nextLine();
                         System.out.println("What is your email?");
                         String email = scanner.nextLine();
-                        leaseSale(date,name,email,vehicle);
+                        leaseSale(date, name, email, vehicle);
                         //connecto to Leasecontract
+                        break;
                     }
                     default:
                         System.out.println("invalid respond try again choose numbers between 1-12");
 
                 }
-            } catch (NumberFormatException e) {
+            } catch (
+                    NumberFormatException e) {
                 System.out.println("Please input a number provided.");
             }
 
@@ -156,7 +184,8 @@ public class UserInterface {
 
     public void processGetByMakeModelRequest(String make, String model) {
         List<Vehicle> vehicles = dealership.getVehiclesByMakeModel(make, model);
-        displayVehciles(vehicles);
+        System.out.println(vehicles);
+        // displayVehciles(vehicles);
     }
 
     public void processGetByYearRequest(double min, double max) {
@@ -185,22 +214,21 @@ public class UserInterface {
     }
 
     public void processAddVehicleRequest(Vehicle vehicle) {
-
         dealership.addVehicle(vehicle);
+        DealershipFileManager.saveDealership(dealership);
     }
 
     public void processRemoveVehicleRequest(int vin) {
-        List<Vehicle> vehicles = dealership.getAllVehicles();
-
-        for (Vehicle vehicle : vehicles) {
-            if (vehicle.getVin() == vin) {
-                dealership.removeVehicle(vehicle);
-                System.out.println("Vehicle with VIN " + vin + " has been removed.");
-                return;
-            }
-        }
-
-        System.out.println("Vehicle with VIN " + vin + " not found.");
+        dealership.getAllVehicles().stream()
+                .filter(v -> v.getVin() == vin)
+                .findFirst()
+                .ifPresentOrElse(
+                        v -> {
+                            dealership.removeVehicle(v);
+                            System.out.println("Vehicle with VIN " + vin + " has been removed.");
+                        },
+                        () -> System.out.println("Vehicle with VIN " + vin + " not found.")
+                );
     }
 
     public static void displayVehciles(List<Vehicle> vehicles) {

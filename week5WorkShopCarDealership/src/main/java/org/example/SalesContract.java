@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 public class SalesContract extends Contract {
 
     private BigDecimal salesTaxAmount;
-    private BigDecimal recordingFee;
+    private final BigDecimal recordingFee;
     private BigDecimal processingFee;
     private boolean finance;
     private Vehicle vehicle;
@@ -15,7 +15,7 @@ public class SalesContract extends Contract {
     public SalesContract(String date, String customerName, String customerEmail, Vehicle vehicle) {
         super(date, customerName, customerEmail, vehicle);
         this.vehicle = vehicle;
-        this.recordingFee = new BigDecimal("2"); // fixed recording fee
+        this.recordingFee = new BigDecimal(100);
 
         // Processing fee based on vehicle price
         if (vehicle.getPrice() < 10000) {
@@ -26,7 +26,8 @@ public class SalesContract extends Contract {
 
         // Sales tax = 5% of vehicle price
         BigDecimal priceBD = BigDecimal.valueOf(vehicle.getPrice());
-        this.salesTaxAmount = priceBD.multiply(new BigDecimal("0.05")).setScale(2, RoundingMode.HALF_UP);
+        this.salesTaxAmount = priceBD.multiply(new BigDecimal(0.05
+        )).setScale(2, RoundingMode.HALF_UP);
     }
 
     // Getters and setters

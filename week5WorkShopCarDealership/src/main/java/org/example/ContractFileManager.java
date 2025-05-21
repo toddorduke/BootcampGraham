@@ -28,7 +28,7 @@ public class ContractFileManager {
                         "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" + vehicle.getVehicleType() + "|" + vehicle.getColor()
                         + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice() + "|" + ((SalesContract) contract).getSalesTaxAmount() + "|" + ((SalesContract) contract).getRecordingFee()
                         + "|" + ((SalesContract) contract).getProcessingFee() + "|" + contract.getTotalPrice() + "|" + 0.00 + "\n");
-                fw.write("sale");
+
                 fw.close();
 
             } else {
@@ -37,11 +37,11 @@ public class ContractFileManager {
                 //15997.50|2239.65|18337.15|541.39
 
                 ((LeaseContract) contract).getMonthlyPayment();
-                fw.write("Sale" + "|" + contract.getDate() + "|" + contract.getCustomerName() + "|" + contract.getCustomerEmail() + "| +" + vehicle.getVin() +
+                fw.write("Lease -" + "|" + contract.getDate() + "|" + contract.getCustomerName() + "|" + contract.getCustomerEmail() + "| +" + vehicle.getVin() +
                         "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getMake() + "|" + vehicle.getVehicleType() + "|" + vehicle.getColor()
                         + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice() + "|" + ((LeaseContract) contract).getLeaseFee() + "|" + ((LeaseContract) contract).getEndingValue()
-                        + "|" + ((SalesContract) contract).getProcessingFee() + "|" + contract.getTotalPrice() + "|" + contract.getMonthlyPayment() + "\n");
-                fw.write("Lease");
+                        +  "|" + contract.getTotalPrice() + "|" + contract.getMonthlyPayment() + "\n");
+
                 fw.close();
             }
 

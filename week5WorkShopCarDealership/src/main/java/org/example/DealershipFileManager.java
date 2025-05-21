@@ -60,8 +60,6 @@ public class DealershipFileManager {
                     }
                     catch(Exception e){
                         System.out.println("error reading line");
-                        continue;
-
                     }
                 }
             }
@@ -71,16 +69,16 @@ public class DealershipFileManager {
         return dealerShip;
     }
 
-    public void saveDealership(DealerShip dealerShip) {
+    public static void saveDealership(DealerShip dealerShip) {
 
        //  is not in append mode it will overwrite the whole file
         try{
             FileWriter fw = new FileWriter("src/main/resources/inventory.csv");
 
-            fw.write(dealerShip.getName() + "|" + dealerShip.getAddress() + "|" + dealerShip.getPhone());
+            fw.write(dealerShip.getName() + "|" + dealerShip.getAddress() + "|" + dealerShip.getPhone()+ "\n");
             //loop thorug dealreship vehciles
             for(Vehicle vehicle : dealerShip.getAllVehicles()){
-                fw.write(vehicle.toString());
+                fw.write(vehicle.toString() + "\n");
 
             }
             fw.close();

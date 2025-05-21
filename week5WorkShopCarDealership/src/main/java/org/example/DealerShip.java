@@ -37,8 +37,12 @@ public class DealerShip {
         List<Vehicle> foundvehicles = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
-            if (vehicle.getMake().toUpperCase().contains(make.toLowerCase()) && vehicle.getModel().toUpperCase().contains(model.toLowerCase()))
+//            System.out.println("current vehicle make and model original: " + vehicle.getMake() + vehicle.getModel());
+//            System.out.println("parameter make and model: " + make + model);
+            if ((vehicle.getMake().toUpperCase().contains(make.toUpperCase()))
+                    && (vehicle.getModel().toUpperCase().contains(model.toUpperCase()))) {
                 foundvehicles.add(vehicle);
+            }
         }
         return foundvehicles;
     }
