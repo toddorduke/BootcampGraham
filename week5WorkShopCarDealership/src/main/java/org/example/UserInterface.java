@@ -185,7 +185,6 @@ public class UserInterface {
     public void processGetByMakeModelRequest(String make, String model) {
         List<Vehicle> vehicles = dealership.getVehiclesByMakeModel(make, model);
         System.out.println(vehicles);
-        // displayVehciles(vehicles);
     }
 
     public void processGetByYearRequest(double min, double max) {
@@ -211,6 +210,7 @@ public class UserInterface {
     public void processGetAllVehiclesRequest() {
         List<Vehicle> vehicles = dealership.getAllVehicles();
         displayVehciles(vehicles);
+
     }
 
     public void processAddVehicleRequest(Vehicle vehicle) {
@@ -264,6 +264,7 @@ public class UserInterface {
         LeaseContract leaseContract = new LeaseContract(date, name, email, vehicle);
         contractFileManager.appendContractToFile(leaseContract);
         System.out.println("Thank you for leasing a vehicle with us");
+
     }
 
 
