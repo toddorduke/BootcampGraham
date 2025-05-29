@@ -3,8 +3,8 @@ package org.example;
 public class Meat extends Topping {
     private TypeOfMeat typeOfMeat;
 
-    public Meat(String toppingType, TypeOfMeat typeOfMeat) {
-        super(toppingType);
+    public Meat(TypeOfMeat typeOfMeat) {
+        super("meat");
         this.typeOfMeat = typeOfMeat;
     }
 
@@ -16,14 +16,19 @@ public class Meat extends Topping {
         this.typeOfMeat = typeOfMeat;
     }
 
-    public double getMeatPrice(int size) {
-        if (size == 4) {
+    @Override
+    public double getTotal(Size size) {
+        if (size == Size.small) {
             return 1.00;
-        } else if (size == 8) {
+        } else if (size == Size.medium) {
             return 2.00;
         } else {
             return 3.00;
         }
     }
 
+    @Override
+    public String toString() {
+        return typeOfMeat.name();
+    }
 }

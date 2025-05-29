@@ -1,6 +1,6 @@
 package org.example;
 
-public enum Sauce {
+public enum TypeOfSauce {
 
     mayo,
     mustard,
@@ -9,7 +9,5 @@ public enum Sauce {
     thousandIslands,
     vinaigrette;
 
-    public static double getPrice(){
-        return 0;
-    }
+
 }

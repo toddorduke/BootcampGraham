@@ -1,19 +1,23 @@
 package org.example;
 
-public class Drink {
-    private String sizeOfDrink;
+public class Drink implements OrderItem{
+    private Size sizeOfDrink;
+
+    public Drink(Size size){
+        this.sizeOfDrink = size;
+    }
 
     // Accepts size as 1 (small), 2 (medium), 3 (large)
-    public double getPriceForSize(int size) {
-        switch (size) {
-            case 1:
-                sizeOfDrink = "Small".toLowerCase();
+    public double getPriceForSize() {
+        switch (sizeOfDrink) {
+            case small:
+              //  sizeOfDrink = Size.small;
                 return 2.00;
-            case 2:
-                sizeOfDrink = "Medium".toLowerCase();
+            case medium:
+               // sizeOfDrink = "Medium".toLowerCase();
                 return 2.50;
-            case 3:
-                sizeOfDrink = "Large".toLowerCase();
+            case large:
+               // sizeOfDrink = "Large".toLowerCase();
                 return 3.00;
             default:
                 throw new IllegalArgumentException("Invalid size. Use 1 (Small), 2 (Medium), or 3 (Large).");
@@ -21,6 +25,20 @@ public class Drink {
     }
 
     public String getSizeOfDrink() {
-        return sizeOfDrink;
+        return sizeOfDrink.name();
+    }
+
+
+    @Override
+    //todo add user choice for flavor add to construct
+    public String toString() {
+        return sizeOfDrink.name() + "strawberry";
+    }
+
+    @Override
+    public double calculateCost() {
+        return getPriceForSize();
     }
 }
+
+

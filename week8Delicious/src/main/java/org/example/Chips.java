@@ -1,8 +1,12 @@
 package org.example;
 
-public enum chips {
+public enum chips implements OrderItem {
 
-    addchips;
+    Lays,
+    Doritos,
+    Sun_Chips;
+
+
 
     public double addchips(String user) {
         //todo fix and link code
@@ -17,4 +21,11 @@ public enum chips {
         return 0;
     }
 
+    @Override
+    public double calculateCost() {
+        return 1.50;
+    }
+
 }
+
+

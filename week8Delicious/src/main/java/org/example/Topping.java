@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Topping {
@@ -17,4 +18,5 @@ public abstract class Topping {
         this.toppingType = toppingType;
     }
 
+    public abstract double getTotal(Size size);
 }
