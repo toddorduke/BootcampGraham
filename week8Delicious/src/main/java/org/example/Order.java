@@ -2,12 +2,16 @@ package org.example;
 
 import java.util.List;
 
-public class OrderClass {
+public class Order {
+    Sandwich sandwich;
+    Topping topping;
 
-//  public List<> showCustomerOrder(){
-//
-//      return List.of();
-//  }
+    public List<Order> showCustomerOrder() {
+
+        String toppingType = topping.getToppingType();
+
+        return List.of();
+    }
 //
 //   public double totalForOrder(){
 //
@@ -22,8 +26,6 @@ public class OrderClass {
 //
 //      return List.of();
 //    }
-
-
 
 
 }

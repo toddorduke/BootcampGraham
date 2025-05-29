@@ -1,6 +1,6 @@
 package org.example;
 
-public enum FreeToppings {
+public enum TypeOfFreeToppings {
 
     lettuce,
     peppers,
@@ -12,8 +12,4 @@ public enum FreeToppings {
     guacamole,
     mushrooms;
 
-    public static double getPrice(){
-        return 0;
-
-    }
 }
