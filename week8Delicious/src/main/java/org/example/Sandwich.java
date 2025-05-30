@@ -33,15 +33,14 @@ public class Sandwich implements OrderItem {
     }
 
     public List<Topping> getAllToppings() {
-for(Topping topping : toppings)
-    System.out.println(topping.toString());
+        for (Topping topping : toppings)
+            System.out.println(topping.toString());
         return toppings;
     }
 
     public void addTopping(Topping topping) {
 
         this.toppings.add(topping);
-
     }
 
     public void removeTopping(Topping topping) {
@@ -71,8 +70,8 @@ for(Topping topping : toppings)
     public double calculateCost() {
         double total = 0;
         total += getBreadPrice(); //initial price
-        for(Topping topping: toppings){
-            total+=topping.getTotal(breadSize);
+        for (Topping topping : toppings) {
+            total += topping.getTotal(breadSize);
         }
 
         return total;
@@ -80,39 +79,57 @@ for(Topping topping : toppings)
 
     @Override
     public String toString() {
+        System.out.println("Sandwich Receipt:");
+        System.out.println("  Size: " + this.getBreadSize());
+        System.out.println("  Bread: " + this.getBreadType());
+        System.out.println("  Toppings:");
+        for (Topping topping : this.getAllToppings()) {
+            System.out.println();
+        }
+
+        return "";
+    }
+
+    @Override
+   public String printToReceipt() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("Sandwich");
-        sb.append("\n");
+        sb.append("Sandwich Receipt:");
+        sb.append("\nBread: ");
         sb.append(breadType);
-        sb.append(" ");
+        sb.append("\nSize: ");
         sb.append(breadSize);
-        sb.append("\n");
+        sb.append("\nToppings: ");
 
-        for(Topping topping: toppings){
-            sb.append(topping);
-            sb.append(" ");
+        for (Topping topping : toppings) {
+            sb.append("    - " + topping);
+            sb.append("\n");
         }
+
+        sb.append("Price: ");
+        sb.append(calculateCost());
 
         return sb.toString();
     }
 
-    public String displaySandwich(){
 
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("Sandwich");
-        sb.append("\n");
-        sb.append(breadType);
-        sb.append(" ");
-        sb.append(breadSize);
-        sb.append("\n");
-
-        for(Topping topping: toppings){
-            sb.append(topping);
-            sb.append(" ");
-        }
-
-        return sb.toString();
-    }
+//
+//    public String displaySandwich() {
+//
+//        StringBuilder sb = new StringBuilder();
+//
+//        sb.append("Sandwich");
+//        sb.append("\n");
+//        sb.append(breadType);
+//        sb.append(" ");
+//        sb.append(breadSize);
+//        sb.append("\n");
+//
+//        for (Topping topping : toppings) {
+//            sb.append(topping);
+//            sb.append(" ");
+//        }
+//
+//        return sb.toString();
+//    }
 }

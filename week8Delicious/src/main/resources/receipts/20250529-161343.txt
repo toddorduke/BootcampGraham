@@ -1,0 +1,9 @@
+2025-05-2916:13:43Sandwich Receipt:
+Bread: white
+Size: small
+Toppings:     - ham
+    - steak
+    - american
+Price: 8.25
+Drink: small:2.0
+chips: $1.50

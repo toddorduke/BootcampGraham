@@ -1,0 +1,10 @@
+2025-05-2917:03:53chips: $1.50
+Drink: small:2.0
+Sandwich Receipt:
+Bread: white
+Size: small
+Toppings:     - steak
+    - american
+    - jalapenos
+    - Sauce: thousandIslands
+Price: 7.25

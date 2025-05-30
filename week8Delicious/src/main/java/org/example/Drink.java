@@ -32,12 +32,17 @@ public class Drink implements OrderItem{
     @Override
     //todo add user choice for flavor add to construct
     public String toString() {
-        return sizeOfDrink.name() + "strawberry";
+        return sizeOfDrink.name();
     }
 
     @Override
     public double calculateCost() {
         return getPriceForSize();
+    }
+
+    @Override
+    public String printToReceipt() {
+        return "Drink: " + getSizeOfDrink()  + ":" + getPriceForSize();
     }
 }
 

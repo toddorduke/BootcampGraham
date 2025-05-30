@@ -3,19 +3,9 @@ package org.example;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class SandWichScreen {
+public class SandWichScreen implements OrderItem {
     static Scanner sc = new Scanner(System.in);
 
-//    public static void main(String[] args) {
-//        Scanner sc = new Scanner(System.in);
-//
-//        System.out.println("""
-//                "Welcome to build a bear SandWich shop!
-//                 Thank you for supporting
-//                 now start your order.
-//                """);
-//        buildSandwich();
-//    }
 
     public static Size breadSize(Size size) {
         //Scanner sc = new Scanner(System.in);
@@ -75,47 +65,72 @@ public class SandWichScreen {
         }
         System.out.println("You have chosen: " + selected);
 
-        System.out.println("would you like to add extra Meat?");
-        int userchoice = Integer.parseInt(sc.nextLine());
-
+        System.out.println("would you like to add extra Meat? ");
+        System.out.println("type 1) for yes\n");
+        System.out.println("type 2) for no\n");
+        int user = Integer.parseInt(sc.nextLine());
+        if (user == 1) {
+            System.out.println("type the size youd like: \n" +
+                    "small\n" +
+                    "medium\n" +
+                    "large\n");
+            String userchoice = sc.nextLine();
+            Size size = Size.valueOf(userchoice);
+            getExtraMeatPrize(size);
+            System.out.println("you extra meat has been added");
+            return selected;
+        } else {
+        }
         return selected;
     }
 
     public static TypeOfCheese addCheese() {
-
         Scanner scanner = new Scanner(System.in);
-        System.out.println("choose your type of Cheese you'd like");
-        System.out.println("1.) American\n " + "2.) Provoline\n" + "3.) Chedder\n" + "4.) Swiss \n");
-        int userinput = Integer.parseInt(scanner.nextLine());
-        TypeOfCheese seleteced;
-        switch (userinput) {
-            case 1: {
-                seleteced = TypeOfCheese.american;
-                Cheese cheese = new Cheese(seleteced);
-                System.out.println("you chosen: " + cheese);
-                return seleteced;
-            }
-            case 2: {
-                seleteced = TypeOfCheese.provolone;
-                Cheese cheese = new Cheese(seleteced);
-                System.out.println("you chosen: " + cheese);
-                return seleteced;
-            }
-            case 3: {
-                seleteced = TypeOfCheese.cheddar;
-                Cheese cheese = new Cheese(seleteced);
-                System.out.println("you chosen: " + cheese);
-                return seleteced;
-            }
-            case 4: {
-                seleteced = TypeOfCheese.swiss;
-                Cheese cheese = new Cheese(seleteced);
-                System.out.println("you chosen: " + cheese);
-                return seleteced;
+        System.out.println("Choose your type of cheese:");
+        System.out.println("1.) American\n2.) Provolone\n3.) Cheddar\n4.) Swiss");
+
+        int userInput = Integer.parseInt(scanner.nextLine());
+        TypeOfCheese selected = null;
+
+        switch (userInput) {
+            case 1:
+                selected = TypeOfCheese.american;
+                break;
+            case 2:
+                selected = TypeOfCheese.provolone;
+                break;
+            case 3:
+                selected = TypeOfCheese.cheddar;
+                break;
+            case 4:
+                selected = TypeOfCheese.swiss;
+                break;
+            default:
+                System.out.println("Invalid selection.");
+                return null;
+        }
+
+        Cheese cheese = new Cheese(selected);
+        System.out.println("You chose: " + cheese);
+
+        System.out.println("Would you like to add extra cheese?");
+        System.out.println("Type 1 for yes\n2 for no");
+        int extraInput = Integer.parseInt(scanner.nextLine());
+
+        if (extraInput == 1) {
+            System.out.println("Type the size you'd like: \nsmall\nmedium\nlarge");
+            String sizeInput = scanner.nextLine().toUpperCase();
+            try {
+                Size size = Size.valueOf(sizeInput);
+                getExtraCheese(size); // <-- call your method here
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid size entered. Skipping extra cheese.");
             }
         }
-        return null;
+
+        return selected;
     }
+
 
     public static TypeOfFreeToppings addFreeTopping() {
         Scanner sc = new Scanner(System.in);
@@ -168,7 +183,7 @@ public class SandWichScreen {
                     4)ranch
                 
                     5)thousand Islands
-                 
+                
                     6)vinaigrette
                 
                 """);
@@ -186,41 +201,56 @@ public class SandWichScreen {
         }
         return selected;
     }
-    public static double getExtraCheese(Size size){
-        System.out.println("""
-                small
-                medium
-                large
-                """);
-        String userInput = sc.nextLine();
-        size = Size.valueOf(userInput);
-        return switch (size) {
-            case small -> .30;
-            case medium -> .60;
-            case large -> .90;
-        };
+
+    public static double getExtraCheese(Size size) {
+        boolean isTrue = true;
+        while (isTrue) {
+            System.out.println("""
+                    small
+                    medium
+                    large
+                    """);
+            try {
+                String userInput = sc.nextLine();
+                size = Size.valueOf(userInput);
+                return switch (size) {
+                    case small -> .30;
+                    case medium -> .60;
+                    case large -> .90;
+                };
+            } catch (IllegalArgumentException e) {
+                System.out.println("please type as shown");
+            }
+        }
+        return 0;
     }
 
     public static double getExtraMeatPrize(Size size) {
-        System.out.println("""
-                small\n
-                medium\n
-                large\n
-                """);
-        String userSize = sc.nextLine();
-        size = Size.valueOf(userSize);
-        switch (size) {
-            case small:
-                return .50;
-            case medium:
-                return 1.00;
-            case large:
-                return 1.50;
-            default: break;
+        boolean correctSize = true;
+        while (correctSize) {
+            try {
+                switch (size) {
+                    case small:
+                        return .50;
+                    case medium:
+                        return 1.00;
+                    case large:
+                        return 1.50;
+                    default:
+                        break;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("please input size as listed");
+            } catch (Error error) {
+                System.out.println("please try again");
+            }
         }
-
         return 0;
     }
+//    public void removeTop(){
+//        Sandwich sandwich;
+//        sandwich.removeTopping();
+//    }
 
     public static Sandwich buildSandwich() {
         Sandwich sandwich = null;
@@ -253,6 +283,7 @@ public class SandWichScreen {
                         6) show all toppings\n
                         7) add extra meat\n
                         8) add extra cheese\n
+                        9) remove toppings\n
                         """);
                 int userInput = Integer.parseInt(sc.nextLine());
                 switch (userInput) {
@@ -261,6 +292,7 @@ public class SandWichScreen {
                         // todo add topping to sandwich
                         Meat meatToAdd = new Meat(meat);
                         sandwich.addTopping(meatToAdd);
+                        System.out.println();
                         break;
 
                     }
@@ -275,7 +307,6 @@ public class SandWichScreen {
                         TypeOfFreeToppings freeTop = addFreeTopping();
                         FreeTopping addFree = new FreeTopping(freeTop);
                         sandwich.addTopping(addFree);
-                        ;
                         break;
                     }
                     case 4: {
@@ -293,38 +324,34 @@ public class SandWichScreen {
                     }
                     case 6: {
                         sandwich.getAllToppings();
+                        break;
                     }
                     case 7: {
                         getExtraMeatPrize(size);
+                        break;
                     }
-                    case 8:{
+                    case 8: {
                         getExtraCheese(size);
+                        break;
+                    }
+                    case 9: {
+                        //   sandwich.removeTopping();
+
                     }
                 }
             }
         }
         return sandwich;
     }
+
+    @Override
+    public double calculateCost() {
+        return 0;
+    }
+
+    @Override
+    public String printToReceipt() {
+        System.out.println("your bread size: ");
+        return "";
+    }
 }
-
-
-////                    case 1: {
-////                        System.out.println("what size bread would you like: " +
-////                                " small medium large");
-////                        String input = sc.nextLine();
-////                        Size size = Size.valueOf(input);
-////                        Size sizeToAdd = breadSize(size);
-////                        sandwich.setBreadSize(sizeToAdd);
-////
-////                        break;
-////                    }
-////                    case 2: {
-////                        String breadType = breadType();
-////                        //add topping to sandWich
-////                        sandwich.setBreadType(breadType);
-////                        break;
-////                    }
-//                    case 3: {
-//
-//                        break;
-//                    }

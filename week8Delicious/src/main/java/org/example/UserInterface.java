@@ -2,14 +2,11 @@ package org.example;
 
 import java.util.Scanner;
 
-import static org.example.Main.newOrder;
-
 public class UserInterface {
     static Scanner sc = new Scanner(System.in);
     static Order newOrder;
 
     public static void main(String[] args) {
-        //1 SandWichScreen sandWichScreen = new SandWichScreen();
 
         boolean isRunning = true;
         newOrder = new Order();
@@ -28,17 +25,12 @@ public class UserInterface {
                     break;
                 case "2"://exit application
                     System.out.println("Thank you! Have a great day!");
-                    isRunning = false;
-                    break;
+                    System.exit(0);
                 default:
                     System.out.println("Re-type entry");
                     break;
             }
-            throw new IllegalArgumentException("Retry the option provided");
-            // end if the switch statement
-
-
-        } // end of the while-loop
+        }
 
     }
 
@@ -53,7 +45,6 @@ public class UserInterface {
 
         int choice = sc.nextInt();
         sc.nextLine();
-
         switch (choice) {
             case 1:
                 return new Drink(Size.small);
@@ -88,48 +79,37 @@ public class UserInterface {
 
                 case "1":
                     newOrder.addToOrder(SandWichScreen.buildSandwich());
-//                    // we could create a Sandwich view
-//                    Sandwich sandwich = new Sandwich("White", Size.medium);
-//                    sandwich.addTopping(new Meat(TypeOfMeat.roastBeef));
-//                    sandwich.addTopping(new Cheese(TypeOfCheese.provolone));
-//                    sandwich.addTopping(new FreeTopping(TypeOfFreeToppings.lettuce));
-//                    newOrder.addToOrder(sandwich);
-//                    System.out.println("Sandwich Added to order");
+
                     break;
                 case "2":
-                    // add drinks
+                    //  todo add drinks
                     newOrder.addToOrder(display());
                     System.out.println("Drink added to order");
                     break;
                 case "3":
-                    newOrder.addToOrder(chips.Lays);
-                    System.out.println("chips added to order");
+                    System.out.println("what type of chips would you like?\n" +
+                            "1) Lays\n" +
+                            "2) Doritos\n" +
+                            "3) sunChips\n");
+                    String userChoice = sc.nextLine();
+                    if (userChoice.equals("1")){
+                        Chips chips = new Chips("lays");
+                        newOrder.addToOrder(chips);
+                        System.out.println("your " + chips.toString() + " have been added");
+                    } else if (userChoice.equals("2")) {
+                        Chips chips = new Chips("Doritos");
+                        newOrder.addToOrder(chips);
+                        System.out.println("your " + chips.toString() + " have been added");
+                    }else {
+                        Chips chips = new Chips("Sunchips");
+                        newOrder.addToOrder(chips);
+                        System.out.println("your " + chips.toString() + " have been added");
+                    }
+
                     break;
                 case "4": {
-
                     checkOut();
-                    // System.out.println(newOrder);
-//                    for (OrderItem item : newOrder.getItems()) {
-//
-////                         we did this to see how we can remove the square bracket from our
-////                        list of Toppings on our Sandwich
-//                        if (item.getClass().getName().equalsIgnoreCase("org.example.sandwich")) {
-//                            Sandwich sand = (Sandwich) item;
-//                            System.out.println(sand.getBreadType());
-//                            System.out.println(sand.getBreadSize());
-//                            for (Topping topping : sand.getAllToppings()) {
-//                                System.out.print(topping + ", ");
-//                            }
-//                            // Sandwich sand = (Sandwich) item;
-//                          //  System.out.println(sand.displaySandwich());
-//                        } else {
-//                            System.out.println(item);
-//                        }
-//                    }
-//                    System.out.println(newOrder.calculateOrderTotal());
-
-                    //case 5 (cancel)
-                    //default
+                    isOrdering = false;
                     break;
 
                 } // end of switch statement
@@ -137,27 +117,43 @@ public class UserInterface {
         }
     }
 
-    static double checkOut() {
-     //   System.out.println(newOrder);
-        for (OrderItem item : newOrder.getItems()) {
 
-//                         we did this to see how we can remove the square bracket from our
-//                        list of Toppings on our Sandwich
+    static void checkOut() {
+
+          System.out.println(newOrder);
+        //print order to user;
+
+        for (OrderItem item : newOrder.getItems()) {
+           // FileManager.writeReciept(newOrder);
+           // System.out.println(item);
+
             if (item.getClass().getName().equalsIgnoreCase("org.example.sandwich")) {
                 Sandwich sand = (Sandwich) item;
-                System.out.println(sand.getBreadType());
-                System.out.println(sand.getBreadSize());
+                System.out.println( "bread type: " + sand.getBreadType());
+                System.out.println("bread size: " + sand.getBreadSize());
                 for (Topping topping : sand.getAllToppings()) {
                     System.out.print(topping + ", ");
                 }
-                // Sandwich sand = (Sandwich) item;
                 //  System.out.println(sand.displaySandwich());
             } else {
-                System.out.println(item);
+             //   System.out.println(item);
             }
         }
         System.out.println(newOrder.calculateOrderTotal());
-        return display().calculateCost();
+
+
+        System.out.println("Does your order look correct if so type: " +
+                "\n1) check out" +
+                "\n2) exit");
+        int user = Integer.parseInt(sc.nextLine());
+        if (user == 1){
+            FileManager.writeReciept(newOrder);
+            System.out.println("Thank you for your support till next time human :)");
+        }else {
+            newOrder = new Order();
+        }
+     //   return display().calculateCost();
+
     }
 }
 

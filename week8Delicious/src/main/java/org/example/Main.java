@@ -8,9 +8,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        newOrder = new Order();
-
-
         UserInterface userInterface = new UserInterface();
         System.out.println(userInterface);
 

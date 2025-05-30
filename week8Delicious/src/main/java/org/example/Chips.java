@@ -1,14 +1,21 @@
 package org.example;
 
-public enum chips implements OrderItem {
-
-    Lays,
-    Doritos,
-    Sun_Chips;
+public class Chips implements OrderItem {
 
 
+//    public String Lays;
+//    public String Doritos;
+//    public String SunChips;
 
-    public double addchips(String user) {
+    private String chipType;
+
+    public Chips(String type){
+      this.chipType = type;
+    }
+
+
+
+    static double addchips(String user) {
         //todo fix and link code
         switch (user) {
             case "yes": {
@@ -22,10 +29,19 @@ public enum chips implements OrderItem {
     }
 
     @Override
+    public String toString() {
+        return "chips:" + chipType;
+    }
+
+    @Override
     public double calculateCost() {
         return 1.50;
     }
 
+    @Override
+    public String printToReceipt() {
+        return "chips: $1.50";
+    }
 }
 
 
