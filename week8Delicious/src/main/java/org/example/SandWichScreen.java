@@ -7,14 +7,15 @@ public class SandWichScreen implements OrderItem {
     static Scanner sc = new Scanner(System.in);
 
 
-    public static Size breadSize(Size size) {
-        //Scanner sc = new Scanner(System.in);
+
+
+        public static Size breadSize (Size size){
+
         System.out.println("your size has been added: " + size);
         return size;
     }
 
-    public static String breadType() {
-        // Scanner sc = new Scanner(System.in);
+        public static String breadType () {
         String[] breadTypes = {"white", "wheat", "rye", "wrap"};
 
         System.out.println("What type of bread would you like?");
@@ -35,9 +36,9 @@ public class SandWichScreen implements OrderItem {
 
     }
 
+
     public static TypeOfMeat addMeatTopping() {
 
-        //   Scanner sc = new Scanner(System.in);
         System.out.println("For your first meat what would you like?\n" +
                 """
                          1)steak,
@@ -247,10 +248,6 @@ public class SandWichScreen implements OrderItem {
         }
         return 0;
     }
-//    public void removeTop(){
-//        Sandwich sandwich;
-//        sandwich.removeTopping();
-//    }
 
     public static Sandwich buildSandwich() {
         Sandwich sandwich = null;
@@ -281,9 +278,7 @@ public class SandWichScreen implements OrderItem {
                         4) add your sauce\n
                         5) Go back to main\n
                         6) show all toppings\n
-                        7) add extra meat\n
-                        8) add extra cheese\n
-                        9) remove toppings\n
+                        7) BLT sandwich\n
                         """);
                 int userInput = Integer.parseInt(sc.nextLine());
                 switch (userInput) {
@@ -326,17 +321,8 @@ public class SandWichScreen implements OrderItem {
                         sandwich.getAllToppings();
                         break;
                     }
-                    case 7: {
-                        getExtraMeatPrize(size);
-                        break;
-                    }
-                    case 8: {
-                        getExtraCheese(size);
-                        break;
-                    }
                     case 9: {
-                        //   sandwich.removeTopping();
-
+                        BLTSandwich();
                     }
                 }
             }
@@ -353,5 +339,31 @@ public class SandWichScreen implements OrderItem {
     public String printToReceipt() {
         System.out.println("your bread size: ");
         return "";
+    }
+
+    public static String BLTSandwich() {
+        System.out.println("would you like a BLT." +
+                "1) yes\n" +
+                "2) no\n");
+        int userinput = Integer.parseInt(sc.nextLine());
+        if (userinput == 1) {
+            Sandwich sandwich = new Sandwich("white bread", Size.medium);
+            Meat bacon = new Meat(TypeOfMeat.bacon);
+            sandwich.addTopping(bacon);
+            Cheese cheddar = new Cheese(TypeOfCheese.cheddar);
+            sandwich.addTopping(cheddar);
+            FreeTopping lettuce = new FreeTopping(TypeOfFreeToppings.lettuce);
+            sandwich.addTopping(lettuce);
+            FreeTopping tomato = new FreeTopping(TypeOfFreeToppings.tomatoes);
+            sandwich.addTopping(tomato);
+            Sauce ranch = new Sauce(TypeOfSauce.ranch);
+            sandwich.addTopping(ranch);
+            return sandwich.printToReceipt();
+        } else {
+
+        }
+
+
+        return null;
     }
 }

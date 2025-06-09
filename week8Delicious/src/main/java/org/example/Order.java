@@ -36,16 +36,14 @@ public class Order {
                 "\nOrder total = " + calculateOrderTotal();
     }
 
-    public void showCustomerOrder() {
-        for (OrderItem orderItem: items){
-            System.out.println(orderItem);
-        }
-    }
+//    public void showCustomerOrder() {
+//        for (OrderItem orderItem: items){
+//            System.out.println(orderItem);
+//        }
+//    }
 
     public OrderItem removeFromOrder(int indexForItem){
 
-
-        //this logic should be in the user interface
         System.out.println("Would you like to remove anything from your order?");
         System.out.println("____________________________________");
         for (int i = 0; i<items.size();i++){
@@ -53,18 +51,8 @@ public class Order {
             System.out.println(i+") " + items.get(i));
         }
 
-        //logic we should actually call to remove item:
-
         return items.remove(indexForItem);
     }
 
-//    public String toString() {
-//        return String.format("%s|%d|%s|%s|%s|%s",
-//                sandwich,
-//                breadSize,
-//                meat,
-//                cheese,
-//                typeOfFreeToppings,
-//                sauceChoice);
-//    }
+
 }

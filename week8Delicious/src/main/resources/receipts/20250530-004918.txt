@@ -1,0 +1,5 @@
+2025-05-3000:49:18Sandwich Receipt:
+Bread: white
+Size: small
+Toppings:     - american
+Price: 6.25

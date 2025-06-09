@@ -11,9 +11,6 @@ public class FileManager {
     }
 
     public static void writeReciept(Order order) {
-//fileWriter
-        //local date.now
-
 
         String dir = "src/main/resources/receipts/";
 
@@ -25,11 +22,6 @@ public class FileManager {
          for(OrderItem item: order.getItems()){
              writer.write(item.printToReceipt() + "\n");
          }
-
-       //  write.close();
-         //order.getitems loop through items
-            //print
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

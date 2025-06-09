@@ -92,7 +92,7 @@ public class UserInterface {
                             "2) Doritos\n" +
                             "3) sunChips\n");
                     String userChoice = sc.nextLine();
-                    if (userChoice.equals("1")){
+                    if (userChoice.equals("1")) {
                         Chips chips = new Chips("lays");
                         newOrder.addToOrder(chips);
                         System.out.println("your " + chips.toString() + " have been added");
@@ -100,7 +100,7 @@ public class UserInterface {
                         Chips chips = new Chips("Doritos");
                         newOrder.addToOrder(chips);
                         System.out.println("your " + chips.toString() + " have been added");
-                    }else {
+                    } else {
                         Chips chips = new Chips("Sunchips");
                         newOrder.addToOrder(chips);
                         System.out.println("your " + chips.toString() + " have been added");
@@ -112,47 +112,48 @@ public class UserInterface {
                     isOrdering = false;
                     break;
 
-                } // end of switch statement
-            } //end of while loop
+                }
+//                case "5":{
+//                    OrderItem item = newOrder.removeFromOrder();
+//                }
+            }
         }
     }
 
 
     static void checkOut() {
 
-          System.out.println(newOrder);
-        //print order to user;
 
         for (OrderItem item : newOrder.getItems()) {
-           // FileManager.writeReciept(newOrder);
-           // System.out.println(item);
+            // FileManager.writeReciept(newOrder);
+            // System.out.println(item);
 
             if (item.getClass().getName().equalsIgnoreCase("org.example.sandwich")) {
                 Sandwich sand = (Sandwich) item;
-                System.out.println( "bread type: " + sand.getBreadType());
+                System.out.println("bread type: " + sand.getBreadType());
                 System.out.println("bread size: " + sand.getBreadSize());
                 for (Topping topping : sand.getAllToppings()) {
                     System.out.print(topping + ", ");
                 }
                 //  System.out.println(sand.displaySandwich());
             } else {
-             //   System.out.println(item);
+                   System.out.println(item);
             }
         }
-        System.out.println(newOrder.calculateOrderTotal());
+        System.out.println("Total: " + newOrder.calculateOrderTotal());
 
 
         System.out.println("Does your order look correct if so type: " +
                 "\n1) check out" +
                 "\n2) exit");
         int user = Integer.parseInt(sc.nextLine());
-        if (user == 1){
+        if (user == 1) {
             FileManager.writeReciept(newOrder);
             System.out.println("Thank you for your support till next time human :)");
-        }else {
+        } else {
             newOrder = new Order();
         }
-     //   return display().calculateCost();
+
 
     }
 }

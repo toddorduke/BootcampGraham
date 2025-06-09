@@ -1,0 +1,4 @@
+2025-05-3000:52:28Sandwich Receipt:
+Bread: white
+Size: small
+Toppings: Price: 5.5

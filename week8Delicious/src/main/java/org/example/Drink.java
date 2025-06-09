@@ -30,9 +30,8 @@ public class Drink implements OrderItem{
 
 
     @Override
-    //todo add user choice for flavor add to construct
     public String toString() {
-        return sizeOfDrink.name();
+        return "Drink: " + sizeOfDrink;
     }
 
     @Override

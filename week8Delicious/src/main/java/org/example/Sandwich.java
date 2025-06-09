@@ -48,14 +48,6 @@ public class Sandwich implements OrderItem {
         this.toppings.remove(topping);
     }
 
-    public double getPrice(Size size) {
-        double totalTop = 0;
-        for (Topping topping : toppings) {
-            totalTop += topping.getTotal(size);
-        }
-        return totalTop;
-    }
-
     public double getBreadPrice() {
         if (breadSize == Size.small) {
             return 5.50;
@@ -73,7 +65,6 @@ public class Sandwich implements OrderItem {
         for (Topping topping : toppings) {
             total += topping.getTotal(breadSize);
         }
-
         return total;
     }
 
@@ -84,7 +75,7 @@ public class Sandwich implements OrderItem {
         System.out.println("  Bread: " + this.getBreadType());
         System.out.println("  Toppings:");
         for (Topping topping : this.getAllToppings()) {
-            System.out.println();
+            System.out.println(topping);
         }
 
         return "";
@@ -111,25 +102,4 @@ public class Sandwich implements OrderItem {
 
         return sb.toString();
     }
-
-
-//
-//    public String displaySandwich() {
-//
-//        StringBuilder sb = new StringBuilder();
-//
-//        sb.append("Sandwich");
-//        sb.append("\n");
-//        sb.append(breadType);
-//        sb.append(" ");
-//        sb.append(breadSize);
-//        sb.append("\n");
-//
-//        for (Topping topping : toppings) {
-//            sb.append(topping);
-//            sb.append(" ");
-//        }
-//
-//        return sb.toString();
-//    }
 }
