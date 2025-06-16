@@ -1,0 +1,6 @@
+2025-05-3011:13:59Drink: small:2.0
+chips: $1.50
+Sandwich Receipt:
+Bread: white
+Size: small
+Toppings: Price: 5.5

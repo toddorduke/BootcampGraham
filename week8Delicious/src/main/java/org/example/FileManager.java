@@ -47,7 +47,7 @@ public class FileManager {
             fileName.append(timeString);
         }
         fileName.append(".txt");
-
+        System.out.println("Thank you for your order");
         return fileName.toString();
     }
 }
