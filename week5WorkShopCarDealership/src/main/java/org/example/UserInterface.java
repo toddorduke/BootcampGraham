@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.DAO.LeaseContractDAO;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -224,7 +226,7 @@ public class UserInterface {
                 .findFirst()
                 .ifPresentOrElse(
                         v -> {
-                            dealership.removeVehicle(v);
+                            dealership.removeVehicle(vin);
                             System.out.println("Vehicle with VIN " + vin + " has been removed.");
                         },
                         () -> System.out.println("Vehicle with VIN " + vin + " not found.")
@@ -260,12 +262,17 @@ public class UserInterface {
     }
 
     public void leaseSale(String date, String name, String email, Vehicle vehicle) {
-        ContractFileManager contractFileManager = new ContractFileManager();
         LeaseContract leaseContract = new LeaseContract(date, name, email, vehicle);
-        contractFileManager.appendContractToFile(leaseContract);
-        System.out.println("Thank you for leasing a vehicle with us");
+        LeaseContractDAO leaseContractDAO = new LeaseContractDAO();
 
+        leaseContractDAO.save(leaseContract); // Save to database
+        System.out.println("Thank you for leasing a vehicle with us.");
     }
 
+//        ContractFileManager contractFileManager = new ContractFileManager();
+//        LeaseContract leaseContract = new LeaseContract(date, name, email, vehicle);
+//        contractFileManager.appendContractToFile(leaseContract);
+//        System.out.println("Thank you for leasing a vehicle with us");
 
 }
+

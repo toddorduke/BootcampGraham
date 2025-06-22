@@ -1,6 +1,8 @@
 package org.example;
 
 
+import org.example.DAO.DataManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,62 +23,31 @@ public class DealerShip {
     }
 
     public List<Vehicle> getVehiclesByPrice(double min, double max) {
-        List<Vehicle> foundvehicles = new ArrayList<>();
+        DataManager dataManager = new DataManager();
 
-        for (Vehicle vehicle : inventory) {
-            if (vehicle.getPrice() >= min && vehicle.getPrice() <= max) {
-                foundvehicles.add(vehicle);
-            }
-
-        }
-        return foundvehicles;
-
+        return dataManager.priceRange(min, max);
     }
 
+    //todo fix make/model
     public List<Vehicle> getVehiclesByMakeModel(String make, String model) {
-        List<Vehicle> foundvehicles = new ArrayList<>();
-
-        for (Vehicle vehicle : inventory) {
-//            System.out.println("current vehicle make and model original: " + vehicle.getMake() + vehicle.getModel());
-//            System.out.println("parameter make and model: " + make + model);
-            if ((vehicle.getMake().toUpperCase().contains(make.toUpperCase()))
-                    && (vehicle.getModel().toUpperCase().contains(model.toUpperCase()))) {
-                foundvehicles.add(vehicle);
-            }
-        }
-        return foundvehicles;
+        DataManager dataManager = new DataManager();
+        return dataManager.make();
     }
 
     public List<Vehicle> getVehiclesByYear(double min, double max) {
-        List<Vehicle> foundvehicles = new ArrayList<>();
-
-        for (Vehicle vehicle : inventory)
-            if (vehicle.getYear() >= min && vehicle.getYear() <= max) {
-                foundvehicles.add(vehicle);
-            }
-        return foundvehicles;
+        DataManager dataManager = new DataManager();
+        return dataManager.year(min, max);
     }
 
     public List<Vehicle> getVehicleByColor(String color) {
-        List<Vehicle> foundvehicles = new ArrayList<>();
-
-        for (Vehicle vehicle : inventory) {
-            if (vehicle.getColor().toLowerCase().contains(color)) {
-                foundvehicles.add(vehicle);
-            }
-        }
-        return foundvehicles;
+        DataManager dataManager = new DataManager();
+        return dataManager.color(color);
     }
 
     public List<Vehicle> getVehicleByMileage(double min, double max) {
-        List<Vehicle> foundvehicles = new ArrayList<>();
+        DataManager dataManager = new DataManager();
 
-        for (Vehicle vehicle : inventory) {
-            if (vehicle.getOdometer() >= min && vehicle.getOdometer() <= max) {
-                foundvehicles.add(vehicle);
-            }
-        }
-        return foundvehicles;
+        return dataManager.mileage(min, max);
     }
 
     public List<Vehicle> getVehicleByType(VehicleType vehicleType) {
@@ -91,25 +62,20 @@ public class DealerShip {
     }
 
     public List<Vehicle> getAllVehicles() {
-        List<Vehicle> foundvehicles = new ArrayList<>();
+        DataManager dataManager = new DataManager();
 
-        for (Vehicle vehicle : inventory) {
-
-            foundvehicles.add(vehicle);
-
-        }
-        return foundvehicles;
+        return dataManager.getAll();
     }
 
     public void addVehicle(Vehicle vehicle) {
-        this.inventory.add(vehicle);
+        DataManager dataManager = new DataManager();
 
+        dataManager.create(vehicle);
     }
 
-    public void removeVehicle(Vehicle vehicle) {
-
-        this.inventory.remove(vehicle);
-
+    public void removeVehicle(int vin) {
+        DataManager dataManager = new DataManager();
+        dataManager.delete(vin);
     }
 
     public Vehicle searchByVin(int vin) {
